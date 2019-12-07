@@ -6,7 +6,7 @@
  * @returns {Object* Log} 
  * @example var log = Log({username: "username", code: 10})
  */
-const Log = (args) => {
+const construct = (args) => {
     // that: padrão de logbase
     const that = {
         status : "OK",
@@ -23,4 +23,12 @@ const Log = (args) => {
     })
     return that;
 }
-module.exports = Log;
+
+const print = (log) => {
+    const keys = Object.keys(log);
+    return keys.map(el => {
+        return (el).concat(" : ").concat(log[el])
+    }).join(" | ");
+}
+
+module.exports = {construct, print};

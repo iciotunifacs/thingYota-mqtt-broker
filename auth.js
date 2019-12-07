@@ -34,5 +34,4 @@ const authSub = (topic, username,password) => {
  */
 const authPub = (topic, username, password) => {
     // TODO: Verificar permissão de pblicação
-    return
 }
