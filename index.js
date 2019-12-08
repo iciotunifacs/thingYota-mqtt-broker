@@ -44,7 +44,6 @@ broker.on('clientDisconnected', function (client,error) {
             log.status = "Error";
             log.error = error;
             log.message = "Não foi possivel fazer unsubscribe";
-            // console.log(`\nType: Subscribe Status: ${log.status} Code: ${log.code} Message: ${log.message} Error: ${log.error}`);
         } else {
             log.message = "Desconexão realizado com sucesso";
         }

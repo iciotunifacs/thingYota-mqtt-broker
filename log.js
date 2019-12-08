@@ -24,6 +24,14 @@ const construct = (args) => {
     return that;
 }
 
+/**
+ * @author Victor Raton
+ * @version 1.0
+ * @description Return log infos in print format
+ * @param {string} log
+ * @returns {string}
+ * @example console.log(print(Log({status: "OK"}))) 
+ */
 const print = (log) => {
     const keys = Object.keys(log);
     return keys.map(el => {
