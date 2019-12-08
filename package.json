@@ -1,7 +1,7 @@
 {
   "name": "mqtt-broker",
   "version": "1.0.0",
-  "description": "Server mqtt",
+  "description": "Server mqtt for get data from arduino",
   "main": "index.js",
   "scripts": {
     "test": "jest",

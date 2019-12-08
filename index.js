@@ -1,12 +1,12 @@
 const mosca = require('mosca'); // Importa o modulo Mosca
-const settings =require('./settings'); // configurações
+const brokerSettings =require('./broker-settings'); // configurações
 const Logger = require('./log'); // Estrutura de log para trabalhar com as callbacks
 const Log = Logger.construct;
 const showLog = Logger.print;
 // const redis = require('./redis'); //Usando o redis como cache
 
 // Pode ser integrado a banco de dados como: Redis e MongoDB
-const broker = new mosca.Server(settings); // Cria um Broker MQTT com base nas configurações
+const broker = new mosca.Server(brokerSettings); // Cria um Broker MQTT com base nas configurações
 
 // Evento: ocorre quando um novo cliente se conecta ao Broker
 broker.on('clientConnected', (client, error) => { 
@@ -53,6 +53,6 @@ broker.on('clientDisconnected', function (client,error) {
 // Inicio do Broker
 broker.on('ready', setup); 
 function setup() {
-    const log = Log({status: true, mensage: "Server run", port: settings.port});
+    const log = Log({status: true, mensage: "Server run", port: brokerSettings.port});
     console.log(showLog(log));
 }
