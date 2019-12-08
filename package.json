@@ -1,17 +1,23 @@
 {
   "name": "mqtt-broker",
   "version": "1.0.0",
-  "description": "Server mqtt",
+  "description": "Server mqtt for get data from arduino",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "nodemon index"
   },
   "author": "Victor Raton",
   "license": "MIT",
   "dependencies": {
+    "mongodb": "^3.3.5",
     "mosca": "^2.8.3",
     "mqtt": "^3.0.0",
-    "nodemon": "^2.0.1"
+    "nodemon": "^2.0.1",
+    "redis": "^2.8.0"
+  },
+  "devDependencies": {
+    "jasmine": "^3.5.0",
+    "jest": "^24.9.0"
   }
 }
