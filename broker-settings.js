@@ -10,8 +10,8 @@ module.exports = {
         pubsubCollection: 'ascoltatori',
         mongo: {}
     },
-    // persistence: {
-    //     factory: mosca.persistence.Mongo,
-    //     url: mongodb.url,
-    // },
+    persistence: {
+        // factory: mosca.persistence.Mongo,
+        url: mongodb.url,
+    },
 }
