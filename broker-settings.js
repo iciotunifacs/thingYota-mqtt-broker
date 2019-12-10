@@ -7,11 +7,17 @@ module.exports = {
     backend : {
         type: 'mongo',		
         url: mongodb.url,
-        pubsubCollection: 'ascoltatori',
+        pubsubCollection: 'teste',
         mongo: {}
     },
-    // persistence: {
+    logger: {
+        level: 'debug'
+    },
+    packed: {
+        messageid: "1",
+    },
+    persistence: {
     //     factory: mosca.persistence.Mongo,
-    //     url: mongodb.url,
-    // },
+        url: mongodb.url,
+    },
 }

@@ -7,11 +7,15 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Program",
+            "name": "nodemon",
+            "runtimeExecutable": "nodemon",
+            "program": "${workspaceFolder}/index.js",
+            "restart": true,
+            "console": "internalConsole",
+            "internalConsoleOptions": "neverOpen",
             "skipFiles": [
                 "<node_internals>/**"
-            ],
-            "program": "${workspaceFolder}\\index.js"
-        }
+            ]
+        },
     ]
 }
