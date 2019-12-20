@@ -54,6 +54,32 @@ broker.on('published', function (packet, client,message) {
     // mostra message se tiver alguma
     message || message !== undefined ? log.message = message : log.message = "void";
     console.log(showLog(log));
+    // Transforma em stringBuff e faz tratamento
+    const stringBuf = packet.payload.toString('utf-8')
+    try {
+        const json = JSON.parse(stringBuf);
+        switch(packet.topic) {
+            case "alunos/registro":
+                try {
+                    const data = json;
+                    console.log(data, data.aluno, data.aula);
+                    const aulonoId = auth.seachUser(data.aluno);
+                    if(aulonoId) {
+                        const aulaId = auth.seachAula(data.aula)
+                        if(aulaId) {
+                            auth.registerAula(data.aula,data.aluno);
+                            console.log("data has save")
+                        }
+                    }
+                } catch (error) {
+                    console.log(error);
+                }
+        }
+    } catch (e) {
+        console.log("Invalid" );
+    }
+    
+    
 });
 
 broker.on('clientDisconnected', function (client,error) {
@@ -74,6 +100,7 @@ broker.on('clientDisconnected', function (client,error) {
 // Inicio do Broker
 broker.on('ready', setup); 
 async function setup() {
+    auth.seachUser("74-27-EA-78-66-6E")
     const log = Log({status: true, mensage: "Server run", port: brokerSettings.port});
     console.log(showLog(log));
 }
