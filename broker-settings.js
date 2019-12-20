@@ -1,12 +1,12 @@
 const mongodb = require("./mongodb");
 module.exports = {
-    port : 3030,
-    host : "localhost",
+    port: 3030,
+    host: "localhost",
     keepalive: 10000,
-    backend : {
-        type: 'mongo',		
+    backend: {
+        type: 'mongo',
         url: mongodb.url,
-        pubsubCollection: 'ascoltatori',
+        pubsubCollection: 'teste',
         mongo: {}
     },
     persistence: {
