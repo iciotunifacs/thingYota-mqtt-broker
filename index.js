@@ -52,8 +52,7 @@ broker.on('published', function (packet, client, message) {
     console.log(packet.topic);
     console.log(packet.payload);
     // Exibe uma mensagem com o tópico da mensagem recebida
-    // const log = Log({ data: packet.payload.toString(), Type: "Publish" });
-    // TODO: configurar mensagen
+    const log = Log({ data: packet.payload.toString(), Type: "Publish" });
     // mostra message se tiver alguma
     message || message !== undefined ? log.message = message : log.message = "void";
     console.log(showLog(log));
