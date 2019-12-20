@@ -60,29 +60,31 @@ broker.on('published', function (packet, client, message) {
     // Transforma em stringBuff e faz tratamento
     const stringBuf = packet.payload.toString('utf-8')
     try {
+        // Transporr para json
         const json = JSON.parse(stringBuf);
+        // verificar os tópicos
         switch(packet.topic) {
             case "alunos/registro":
                 try {
+                    // Dados do brooken
                     const data = json;
-                    console.log(data, data.aluno, data.aula);
+                    // Valiudaçãpo de aluno
                     const aulonoId = auth.seachUser(data.aluno);
-                    if(aulonoId) {
-                        const aulaId = auth.seachAula(data.aula)
-                        if(aulaId) {
-                            auth.registerAula(data.aula,data.aluno);
-                            console.log("data has save")
-                        }
+                    // Validação de aula
+                    const aulaId = auth.seachAula(data.aula)
+                    if(aulonoId && aulaId) {
+                        // Registro
+                        auth.registerAula(data.aula,data.aluno);
+                        console.log("data has save")
                     }
                 } catch (error) {
                     console.log(error);
                 }
+                break;
         }
-    } catch (e) {
+    } catch (error) {
         console.log("Invalid" );
     }
-    
-    
 });
 
 broker.on('clientDisconnected', function (client, error) {
