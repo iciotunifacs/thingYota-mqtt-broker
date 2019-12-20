@@ -11,8 +11,17 @@
             "runtimeExecutable": "nodemon",
             "program": "${workspaceFolder}/index.js",
             "restart": true,
-            "console": "integratedTerminal",
-            "internalConsoleOptions": "neverOpen",
+            "console": "internalConsole",
+            "internalConsoleOptions": "openOnSessionStart",
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Program",
+            "program": "${workspaceFolder}/index.js",
             "skipFiles": [
                 "<node_internals>/**"
             ]

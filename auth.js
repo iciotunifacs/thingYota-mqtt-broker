@@ -1,13 +1,24 @@
+const axios = require("axios").default;
+
 /**
  * @author Victor Raton
  * @version 1.0
- * @description Buscar dados de usuário
+ * @description Buscar dados de usuário a partir do mac
  * @param {string} username 
  * @param {string} id 
  * @returns {Object}
  */
-const seachUser = (username,id) => {
-    // TODO: Buscar usuário no banco e retornar os dados do usuário
+const seachUser = async (macAdress) => {
+  let data = undefined;
+  await axios.post('http://localhost:3000/api/v1/alunos/broken/auth', {
+      macAdress: macAdress,
+  })
+      .then((response) => {
+         data =response.data
+      }, (error) => {
+        console.log(error);
+      });
+    return data;
 }
 
 /**
@@ -35,3 +46,5 @@ const authSub = (topic, username,password) => {
 const authPub = (topic, username, password) => {
     // TODO: Verificar permissão de pblicação
 }
+
+module.exports = {seachUser,authPub, authSub}

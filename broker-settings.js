@@ -1,5 +1,4 @@
 const mongodb = require("./mongodb");
-const mosca = require("mosca");
 module.exports = {
     port : 3030,
     host : "localhost",
