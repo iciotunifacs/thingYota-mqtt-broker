@@ -1,7 +1,6 @@
 require("dotenv").config();
 
 const mosca = require('mosca'); // Importa o modulo Mosca
-<<<<<<< HEAD
 const Logger = require('./log'); // Estrutura de log para trabalhar com as callbacks
 const Log = Logger.construct;
 const showLog = Logger.print;
@@ -25,13 +24,6 @@ const brokerSettings = {
     // },
 }
 
-=======
-const brokerSettings = require('./broker-settings'); // configurações
-const Logger = require('./log'); // Estrutura de log para trabalhar com as callbacks
-const Log = Logger.construct;
-const showLog = Logger.print;
-const mongodb = require('./mongodb');
->>>>>>> 167eaf4a1fbf9a237db56461035fe9970e514f9a
 // const redis = require('./redis'); //Usando o redis como cache
 
 
@@ -110,27 +102,8 @@ broker.on('clientDisconnected', function (client, error) {
 
 
 // Inicio do Broker
-<<<<<<< HEAD
 broker.on('ready', setup); 
 async function setup() {
-    auth.seachUser("74-27-EA-78-66-6E")
     const log = Log({status: true, mensage: "Server run", port: brokerSettings.port});
     console.log(showLog(log));
-=======
-broker.on('ready', setup);
-function setup() {
-    const log = Log({ status: true, mensage: "Server run", port: brokerSettings.port });
-    // console.log(showLog(log));
-    let nmessage = {
-        topic: '/hello/world',
-        payload: 'abcde', // or a Buffer
-        qos: 0, // 0, 1, or 2
-        retain: true // or true
-    };
-
-    broker.publish(nmessage, function () {
-        console.log('done!');
-    });
-
->>>>>>> 167eaf4a1fbf9a237db56461035fe9970e514f9a
 }
