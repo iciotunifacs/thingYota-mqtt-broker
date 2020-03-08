@@ -1,8 +1,10 @@
-
+const path = require('path');
+require('dotenv').config({
+  path: process.env.NODE_ENV == 'development' ? path.resolve(__dirname,'.env.development') : path.resolve(__dirname, '.env')
+})
 
 const broker = require('./config/broker')
 const server = require('net').createServer(broker.handle)
-const port = process.env.PORT || 4000;
 
 // Handles de erro
 broker.on('clientError', function (client, err) {
@@ -42,6 +44,6 @@ broker.on('client', function (client) {
   client.subscribe({topic: `client/${client.id}`}, () => console.log('auth ok'))
 })
 
-server.listen(port, function () {
-  console.log('server started and listening on port ', port)
+server.listen(process.env.PORT,  ()=> {
+  console.log(`server started and listening on port ${process.env.PORT}`)
 })
