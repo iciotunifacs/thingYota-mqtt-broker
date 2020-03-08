@@ -4,7 +4,7 @@ require('dotenv').config({
 })
 
 const broker = require('./config/broker')
-const server = require('net').createServer(broker.handle)
+const server = require('./config/server').createServer(broker.handle)
 
 // Handles de erro
 broker.on('clientError', function (client, err) {
