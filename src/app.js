@@ -1,4 +1,7 @@
-const aedes = require('aedes')()
+const aedes = require('aedes')({
+  //autenticate
+  // authenticate: require('./controller/auth.controller')
+})
 const server = require('net').createServer(aedes.handle)
 const port = process.env.PORT || 4000;
 
@@ -14,36 +17,16 @@ aedes.on('connectionError', function (client, err) {
 // recebimento de uma publish
 aedes.on('publish', function (packet, client) {
   if (client) {
-    console.log('message from client', client.id, packet)
-    switch(packet.topic) {
-      // usar o payload para subsvribe
-      case "auth":
-        client.subscribe({topic: `auth/${client.id}`}, () => console.log('auth ok'))
-        break;
-      // usar o payload para onsubscribe
-      case "presence":
-        aedes.unsubscribe('presence',() => "out")
-        break;
-      default:
-       console.log('ok')
-    }
+    console.info(Date())
+    console.log('message from client', client.id)
+    console.log(`[${packet.topic}:${client.id}]`, packet.payload.toString())
   }
 })
 
 aedes.on('subscribe', function (subscriptions, client) {
   /**@TODO criar token com o subscribe */
   if (client) {
-    console.log('subscribe from client', subscriptions, client.id)
-    client.on('presence',() => "teste")
-    client.eventNames('toServer')
-    aedes.publish({
-      cmd: "publish",
-      topic: 'toServer',
-      qos: 2,
-      payload: "tetse",
-      retain: false
-      
-    }, "retorno do subriscribe")
+    console.log('subscribe from client', client.id, subscriptions)
   }
 })
 
@@ -56,6 +39,8 @@ aedes.on('unsubscribe', function (subscriptions, client) {
 
 aedes.on('client', function (client) {
   console.log('new client', client.id)
+  // Private topic for broadcast
+  client.subscribe({topic: `client/${client.id}`}, () => console.log('auth ok'))
 })
 
 server.listen(port, function () {
