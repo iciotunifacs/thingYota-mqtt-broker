@@ -1,10 +1,7 @@
-const path = require('path');
-require('dotenv').config({
-  path: process.env.NODE_ENV == 'development' ? path.resolve(__dirname,'.env.development') : path.resolve(__dirname, '.env')
+const broker = require('aedes')({
+  //autenticate
+  // authenticate: require('./controller/auth.controller')
 })
-
-const broker = require('./config/broker')
-const server = require('./config/server').createServer(broker.handle)
 
 // Handles de erro
 broker.on('clientError', function (client, err) {
@@ -21,6 +18,10 @@ broker.on('publish', function (packet, client) {
     console.info(Date())
     console.log('message from client', client.id)
     console.log(`[${packet.topic}:${client.id}]`, packet.payload.toString())
+  }
+  if(packet.topic == "teste") {
+    broker.emit("teste");
+    // broker.publish("teste")
   }
 })
 
@@ -44,6 +45,4 @@ broker.on('client', function (client) {
   client.subscribe({topic: `client/${client.id}`}, () => console.log('auth ok'))
 })
 
-server.listen(process.env.PORT,  ()=> {
-  console.log(`server started and listening on port ${process.env.PORT}`)
-})
+module.exports = broker
