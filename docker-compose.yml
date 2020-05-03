@@ -1,0 +1,8 @@
+version: "3"
+services:
+  broken:
+    container_name: thingYta-mqtt-2
+    restart: always
+    build: .
+    ports:
+      - "4000:4000"
