@@ -1,4 +1,4 @@
-module.exports = (client, username, pass) => {
+module.exports = (client, username, password, cb) => {
     /**@todo: reject auth */
     // return false;
     /**@todo: accept auth */
