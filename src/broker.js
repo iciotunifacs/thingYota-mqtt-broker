@@ -19,21 +19,15 @@ broker.on('publish', function (packet, client) {
     console.log('message from client', client.id)
     console.log(`[${packet.topic}:${client.id}]`, packet.payload.toString())
   }
-  if(packet.topic == "teste") {
-    broker.emit("teste");
-    // broker.publish("teste")
-  }
 })
 
 broker.on('subscribe', function (subscriptions, client) {
-  /**@TODO criar token com o subscribe */
   if (client) {
     console.log('subscribe from client', client.id, subscriptions)
   }
 })
 
 broker.on('unsubscribe', function (subscriptions, client) {
-  /**@TODO desativar token som unsubscribe */
   if (client) {
     console.log('unsubscribe from client', subscriptions, client.id)
   }
