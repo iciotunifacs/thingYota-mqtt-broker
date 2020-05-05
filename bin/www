@@ -22,18 +22,18 @@ require('dotenv').config({
 
 const env = require('../env/');
 const broker = require("../src/broker");
+const server = require("../src/server");
 const debug = require('debug')('thingyota-mqtt-broker:server');
+const ws = require('websocket-stream')
+
+
+ws.createServer({ server: server }, broker.handle)
 
 /**
  * Get port from environment and store in Express.
  */
 
 const port = normalizePort(env.sever.port || '3000');
-/**
- * Create HTTP server.
- */
-
-const server = require('../src/config/server').createServer(broker.handle);
 
 /**
  * Normalize a port into a number, string, or false.
