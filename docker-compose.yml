@@ -3,6 +3,8 @@ services:
   broken:
     container_name: thingYta-mqtt
     restart: always
-    build: .
+    build:
+      context: .
+      dockerfile: ./Dockerfile.dev
     ports:
       - "9001:9001"
