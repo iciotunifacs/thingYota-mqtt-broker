@@ -13,5 +13,5 @@ COPY ./package.json /usr/src/app
 WORKDIR /usr/src/app
 
 RUN npm install
-EXPOSE 4000
+EXPOSE 9001
 CMD npm run dev-docker
